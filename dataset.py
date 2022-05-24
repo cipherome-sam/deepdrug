@@ -537,16 +537,16 @@ class DeepDrug_Dataset(LightningDataModule):
         train_split = PairedDataset_v1(self.entry1_dataset,self.entry2_dataset,
             train_pairs,train_labels)
 
-        dataloader = DataLoader(train_split,num_workers=8,shuffle=True,batch_size=self.batch_size,pin_memory=True) 
+        dataloader = DataLoader(train_split,num_workers=1,shuffle=True,batch_size=self.batch_size,pin_memory=True) 
         return dataloader 
     def val_dataloader(self):
         print('in val dataloader...')
         val_split = PairedDataset_v1(self.entry1_dataset,self.entry2_dataset,
             self.entry_pairs[self.valid_indexs],self.pair_labels[self.valid_indexs])
-        return DataLoader(val_split,num_workers=8,shuffle=False,batch_size=self.batch_size ) 
+        return DataLoader(val_split,num_workers=1,shuffle=False,batch_size=self.batch_size ) 
 
     def test_dataloader(self):
         print('in test dataloader...')
         test_split = PairedDataset_v1(self.entry1_dataset,self.entry2_dataset,
             self.entry_pairs[self.test_indexs],self.pair_labels[self.test_indexs])
-        return DataLoader(test_split,num_workers=8,shuffle=False,batch_size=self.batch_size,) 
+        return DataLoader(test_split,num_workers=1,shuffle=False,batch_size=self.batch_size,) 
